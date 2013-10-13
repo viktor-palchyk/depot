@@ -38,6 +38,14 @@
   color: #bfb;
   font-size: small;
 }
+
+#side t {
+  color: white;
+  font-size: small;
+  background: darkblue;
+  vertical-align: text-bottom;
+}
+
 /* END:mainlayout */
 
 /* Global styles */
