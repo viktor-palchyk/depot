@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound
     cart = Cart.create
     session[:cart_id] = cart.id
+    cart
   end
 
   # The current_cart starts by getting the :cart_id from the session object,

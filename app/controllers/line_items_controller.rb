@@ -24,11 +24,24 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
+    @cart = current_cart
+    product = Product.find(params[:product_id])
+    @line_item = @cart.line_items.build(:product => product)
+
+      # We use the current_cart method to find (or create) a cart in the session.
+      # We use the params object to get the :product_id parameter from the request.
+      # Then we pass the found product to @cart.line_items.build, which builds a 
+      # Line Item relationship. 
+      # As the build method  is called on the @cart that will be used as one end of the relationship.
+      # The product passed as a parameter will be used as the other end of the relationship.
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.html { redirect_to(@line_item.cart,
+         :notice => 'Line item was successfully created.') }
+
+        # When Line Item is created the user is redirected to the cart instead of back to the line item itself
+
         format.json { render action: 'show', status: :created, location: @line_item }
       else
         format.html { render action: 'new' }
