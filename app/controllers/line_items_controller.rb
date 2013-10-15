@@ -26,14 +26,7 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(:product => product)
-
-      # We use the current_cart method to find (or create) a cart in the session.
-      # We use the params object to get the :product_id parameter from the request.
-      # Then we pass the found product to @cart.line_items.build, which builds a 
-      # Line Item relationship. 
-      # As the build method  is called on the @cart that will be used as one end of the relationship.
-      # The product passed as a parameter will be used as the other end of the relationship.
+    @line_item = @cart.add_product(product.id)
 
     respond_to do |format|
       if @line_item.save
