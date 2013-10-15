@@ -1,6 +1,11 @@
 class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :cart
+
+  def total_price
+    product.price * quantity
+  end
+  
 end
 
 # We specify links from the line item to the carts and products tables

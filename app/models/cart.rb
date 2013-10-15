@@ -19,4 +19,8 @@ class Cart < ActiveRecord::Base
 
   # The method checks whether our list of items already includes the product we are adding; 
   # if it does it bumps (supposed: increases) the quantity and if it does not it builds a new LineItem.
+
+  def total_price
+    line_items.to_a.sum { |item| item.total_price}
+  end
 end
