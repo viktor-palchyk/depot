@@ -12,16 +12,19 @@
 </head>
 
 <body id="store">
+
   <div id="banner">
     <%= image_tag("logo.png") %>
     <%= @page_title || "Pragmatic Bookshelf" %>
   </div>
+
   <div id="columns">
+
     <div id="side">
       
-      <div id="cart">
-        <%= render(@cart)%>
-      </div>
+      <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+        <%= render(@cart) %>
+      <% end %>
 
       <a href="http://www.....">Home</a></br />
       <a href="http://www...../faq">Questions</a></br />
@@ -29,15 +32,16 @@
       <a href="http://www...../contact">Contact</a></br />
       </br>
       <t>  <%= @time %> </t>
+
     </div>
+
     <div id="main">
       <%= yield %>
     </div>
+
   </div>
 
-  <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
-    <%= render @cart %>
-  <% end %>
+  
 
 </body>
 
