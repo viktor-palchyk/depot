@@ -46,8 +46,8 @@ class OrdersController < ApplicationController
 
   # POST /orders
   # POST /orders.xml
-  def create
-    @order = Order.new(params[:order])
+    def create
+    @order = Order.new(order_params)
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
@@ -92,5 +92,11 @@ class OrdersController < ApplicationController
       format.html { redirect_to(orders_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  
+  def order_params
+    params.require(:order).permit(:name, :address, :email, :pay_type)
   end
 end
