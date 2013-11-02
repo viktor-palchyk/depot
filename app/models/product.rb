@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   # products should be displayed in alphabetical order by title
 
   has_many :line_items
+  has_many :orders, :through => :line_items # there is a relationship between products and orderst through the line_items relationsip
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

@@ -61,6 +61,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def who_bought
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.atom
+      # by adding format.atom we cause Rails to look for a template named who_bought.atom.builder. Atom is used as default for the feed format.
+      format.xml { render :xml => @product }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
