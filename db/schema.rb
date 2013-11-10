@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20131103210832) do
     t.integer  "cart_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "quantity",                           default: 1
+    t.integer  "quantity",   default: 1
     t.integer  "order_id"
-    t.decimal  "price",      precision: 8, scale: 2
+    t.decimal  "price"
   end
 
   create_table "orders", force: true do |t|

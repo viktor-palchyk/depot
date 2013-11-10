@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.paginate :page=>params[:page], :order=>'created_at desc',
+    @orders = Order.paginate :page=>params[:page], :order => 'created_at desc',
       :per_page => 10
 
     respond_to do |format|
@@ -97,6 +97,6 @@ class OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:name, :address, :email, :pay_type)
+    params.require(:order).permit(:title, :name, :address, :email, :pay_type)
   end
 end
